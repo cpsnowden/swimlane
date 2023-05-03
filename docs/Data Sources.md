@@ -75,7 +75,9 @@ however, this would be a last resort.
 
 Everyone Active provide an IOS application to enable you to book activities:
 
-![image](./assets/everyone-active-ios-app.jpeg | width=200)
+<p align="center">
+  <img height="300" src="./assets/everyone-active-ios-app.jpeg">
+</p>
 
 This includes time, lane speed and number of available slots. However, as it is a native
 application it is hard to find where this is data is coming from.
