@@ -22,7 +22,7 @@ different vendors. Hence I will initially focus on determining feasible data sou
 3. Active Lambeth (http://active.lambeth.gov.uk)
    - Clapham Leisure Centre (formerly operated by Better)
 
-See [Data Sources](./docs/Data%20Sources.md).
+The discovered apis can be found [here](./docs/Data%20Sources.md)
 
 ### Architecture
 
