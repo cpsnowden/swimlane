@@ -21,3 +21,7 @@ different vendors. Hence I will initially focus on determining feasible data sou
    - Clapham Leisure Centre (formerly operated by Better)
 
 See [Data Sources](./docs/Data%20Sources.md).
+
+### Architecture
+
+Coming Soon...
