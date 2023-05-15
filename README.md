@@ -24,6 +24,11 @@ different vendors. Hence I will initially focus on determining feasible data sou
 
 The discovered apis can be found [here](./docs/Data%20Sources.md)
 
-### Architecture
+### Feature Triage
 
-Coming Soon...
+H (High) / M (Medium) / L (Low) - Priority
+
+- H - To _see_ lane availability for a pool
+- H - To _see_ lane availability for multiple a pools
+- M - To save a set of favorite pools
+- L - To _see_ pools near your location (and their availability)
