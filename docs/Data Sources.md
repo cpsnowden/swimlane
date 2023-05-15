@@ -28,8 +28,8 @@ with response
 
 ```json
 {
-  "data": {
-    "31": {
+  "data": [
+    {
       "starts_at": {
         "format_12_hour": "11:10am",
         "format_24_hour": "11:10"
@@ -59,7 +59,7 @@ with response
       "allows_anonymous_bookings": false
     },
     ...
-  }
+  ]
 }
 ```
 
@@ -85,6 +85,12 @@ application it is hard to find where this is data is coming from.
 Here comes [mitmproxy](https://blog.kulman.sk/debugging-ios-network-traffic/), a very useful (and free)
 HTTP proxy which enables you to debug network traffic from your phone configuring your phone to route requests
 via an intermediate proxy. This identified the following apis:
+
+##### Venues
+
+```bash
+curl "https://api.myfitapp.de/json/klubSearch/Everyone%20Active?appid=153&appver=106.48&loc=en_GB&uid=9B2FE425-B13F-43F3-A6C1-4DED72DFE8F4&c=47063&build=562500"
+```
 
 ##### Auth Token
 
@@ -247,8 +253,8 @@ with response:
 
 ```json
 {
-  "data": {
-    "50": {
+  "data": [
+    {
       "starts_at": {
         "format_12_hour": "6:20pm",
         "format_24_hour": "18:20"
@@ -278,6 +284,6 @@ with response:
       "allows_anonymous_bookings": false
     },
     ...
-  }
+  ]
 }
 ```
