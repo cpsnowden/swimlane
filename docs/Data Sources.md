@@ -79,12 +79,11 @@ Everyone Active provide an IOS application to enable you to book activities:
   <img height="300" src="./assets/everyone-active-ios-app.jpeg">
 </p>
 
-This includes time, lane speed and number of available slots. However, as it is a native
-application it is hard to find where this is data is coming from.
+This includes time, lane speed and number of available slots. However, as it is a mobile application, you cannot simply inspect the network requests :(.
 
 Here comes [mitmproxy](https://blog.kulman.sk/debugging-ios-network-traffic/), a very useful (and free)
-HTTP proxy which enables you to debug network traffic from your phone configuring your phone to route requests
-via an intermediate proxy. This identified the following apis:
+HTTP proxy which enables you to debug network traffic from your phone by configuring your phone to route requests
+via an intermediate proxy which you can run on your laptop. This identified the following apis:
 
 ##### Venues
 
