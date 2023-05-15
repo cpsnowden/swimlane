@@ -1,10 +1,10 @@
-package org.cps.swimlane.venues.everyoneactive;
+package org.cps.swimlane.operator.plugin.everyoneactive;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import org.cps.swimlane.model.LaneAvailability;
 import org.cps.swimlane.model.Venue;
-import org.cps.swimlane.venues.operator.PoolVenueOperator;
-import org.cps.swimlane.venues.everyoneactive.external.EveryoneActiveApi;
+import org.cps.swimlane.operator.core.PoolVenueOperator;
+import org.cps.swimlane.operator.plugin.everyoneactive.external.EveryoneActiveApi;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
@@ -55,7 +55,7 @@ public class EveryoneActive implements PoolVenueOperator {
     }
 
     @Override
-    public String getOperatorName() {
+    public String getOperatorId() {
         return OPERATOR_NAME;
     }
 }

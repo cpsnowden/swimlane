@@ -1,4 +1,4 @@
-package org.cps.swimlane.venues.better.external;
+package org.cps.swimlane.operator.plugin.better.external;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -6,12 +6,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResponseData<T> {
+public class ActivityResponse {
 
 
-    private DataHolder<T> data;
+    private DataHolder<Activity> data;
 
-    public List<T> getData() {
+    public List<Activity> getData() {
         return data.values;
     }
 

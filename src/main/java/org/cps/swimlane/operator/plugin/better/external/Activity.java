@@ -1,9 +1,9 @@
-package org.cps.swimlane.venues.activelambeth.external;
+package org.cps.swimlane.operator.plugin.better.external;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.cps.swimlane.venues.better.external.FormatTime;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * {
@@ -69,15 +69,15 @@ public class Activity {
         return date;
     }
 
+    public LocalDateTime getStartsAt() {
+        return date.atTime(startsAt.getFormat24Hour());
+    }
+
+    public LocalDateTime getEndsAt() {
+        return date.atTime(endsAt.getFormat24Hour());
+    }
+
     public String getVenueSlug() {
         return venueSlug;
-    }
-
-    public FormatTime getStartsAt() {
-        return startsAt;
-    }
-
-    public FormatTime getEndsAt() {
-        return endsAt;
     }
 }

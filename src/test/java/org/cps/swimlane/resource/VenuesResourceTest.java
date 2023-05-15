@@ -3,8 +3,8 @@ package org.cps.swimlane.resource;
 import io.quarkus.test.junit.QuarkusMock;
 import io.quarkus.test.junit.QuarkusTest;
 import org.cps.swimlane.model.Venue;
-import org.cps.swimlane.venues.operator.PoolVenueOperator;
-import org.cps.swimlane.venues.operator.PoolVenueOperatorRegistry;
+import org.cps.swimlane.operator.core.PoolVenueOperator;
+import org.cps.swimlane.operator.core.PoolVenueOperatorRegistry;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,11 +12,11 @@ import org.mockito.Mockito;
 
 import java.util.Arrays;
 
-import static io.restassured.RestAssured.given;
+import static org.cps.swimlane.resource.RestAssuredTestUtils.get;
 import static org.mockito.Mockito.when;
 
 @QuarkusTest
-public class LaneAvailabilityTest {
+public class VenuesResourceTest {
 
     PoolVenueOperator operator1;
 
@@ -26,8 +26,8 @@ public class LaneAvailabilityTest {
     public void setUp() {
         operator1 = Mockito.mock(PoolVenueOperator.class);
         operator2 = Mockito.mock(PoolVenueOperator.class);
-        when(operator1.getOperatorName()).thenReturn("operator1");
-        when(operator2.getOperatorName()).thenReturn("operator2");
+        when(operator1.getOperatorId()).thenReturn("operator1");
+        when(operator2.getOperatorId()).thenReturn("operator2");
         QuarkusMock.installMockForType(
                 new PoolVenueOperatorRegistry(Arrays.asList(operator1, operator2)),
                 PoolVenueOperatorRegistry.class
@@ -60,18 +60,6 @@ public class LaneAvailabilityTest {
         Assertions.assertEquals("venueA", venueA.getSlug());
     }
 
-    @Test
-    public void testVenueTimes() {
 
-    }
-
-    private <T> T get(String path, Class<T> responseModel) {
-        return given()
-                .when().get(path)
-                .then()
-                .statusCode(200)
-                .extract()
-                .as(responseModel);
-    }
 
 }

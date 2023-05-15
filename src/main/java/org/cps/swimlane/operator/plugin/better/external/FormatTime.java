@@ -1,4 +1,4 @@
-package org.cps.swimlane.venues.better.external;
+package org.cps.swimlane.operator.plugin.better.external;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
