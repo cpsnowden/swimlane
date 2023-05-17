@@ -59,7 +59,4 @@ public class VenuesResourceTest {
         Assertions.assertEquals("Venue A", venueA.getName());
         Assertions.assertEquals("venueA", venueA.getSlug());
     }
-
-
-
 }

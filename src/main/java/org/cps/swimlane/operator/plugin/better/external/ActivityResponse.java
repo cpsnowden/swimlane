@@ -2,17 +2,37 @@ package org.cps.swimlane.operator.plugin.better.external;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityResponse {
 
-
-    private DataHolder<Activity> data;
+    @JsonDeserialize(using = DataDeserializer.class)
+    private List<Activity> data;
 
     public List<Activity> getData() {
-        return data.values;
+        return data;
+    }
+
+    /**
+     * Odd response from better where some dates return an array and others a keyed object
+     */
+    public static class DataDeserializer extends JsonDeserializer<List<Activity>> {
+        @Override
+        public List<Activity> deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+            if (p.currentToken().equals(JsonToken.START_ARRAY)) {
+                return ctxt.readValue(p, ctxt.getTypeFactory().constructCollectionLikeType(List.class, Activity.class));
+            }
+            DataHolder<Activity> holder = ctxt.readValue(p, ctxt.getTypeFactory().constructParametricType(DataHolder.class, Activity.class));
+            return holder.values;
+        }
     }
 
     /**
