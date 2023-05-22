@@ -20,4 +20,5 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build -Dquarkus.container-image.build=true -Dquarkus.package.type=native
         env:
-          QUARKUS_CONTAINER_IMAGE_TAG: gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APP_NAME }}
+#          QUARKUS_CONTAINER_IMAGE_TAG: gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APP_NAME }}
+          QUARKUS_CONTAINER_IMAGE_TAG: gcr.io/snowdc/snowdc
