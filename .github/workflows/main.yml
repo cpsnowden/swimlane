@@ -1,13 +1,13 @@
 on:
   push:
-    branches: ["master"]
+    branches: ["master",d "native"]
 
 env:
   PROJECT_ID: wagon-bootcamp-374809
   GAR_LOCATION: europe-west2
   #  https://console.cloud.google.com/artifacts/docker/wagon-bootcamp-374809/europe-west2/personal-projects?project=wagon-bootcamp-374809
   REPOSITORY: personal-projects
-  SERVICE: swimlane
+  SERVICE: swimlane-native
   REGION: europe-west2
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
       - name: Build with Gradle
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
         with:
-          arguments: build
+          arguments: build -Dquarkus.package.type=native
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v2
@@ -70,7 +70,7 @@ jobs:
 
       - name: Build and Push Container
         run: |-
-          docker build -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}:${{ github.sha }}" -f dockerfiles/Dockerfile.jvm ./
+          docker build -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}:${{ github.sha }}" -f dockerfiles/Dockerfile.native ./
           docker push "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}:${{ github.sha }}"
 
   deploy:
