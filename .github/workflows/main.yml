@@ -27,3 +27,17 @@ jobs:
         with:
           name: quarkus-app-jvm
           path: build/quarkus-app
+
+  dockerize:
+    runs-on: ubuntu-latest
+    name: Build Docker Image
+    steps:
+    - name: Dockerize
+      uses: maxday/quarkus-dockerize-action@master
+      with:
+        tag: swimlane
+        executablePath: '''
+        dockerfilePath: src/main/docker/Dockerfile.jvm
+    - name: Listing
+      run: |
+        ls -ltR
