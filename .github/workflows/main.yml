@@ -51,7 +51,8 @@ jobs:
           name: dockerfiles
           path: src/main/docker
 
-  #  Based on https://github.com/google-github-actions/example-workflows/blob/main/workflows/deploy-cloudrun/cloudrun-docker.yml
+  # Based on https://github.com/google-github-actions/example-workflows/blob/main/workflows/deploy-cloudrun/cloudrun-docker.yml
+  # TODO Push this into gradle given quarkus can do the image build https://quarkus.io/guides/container-image
   docker:
     name: Create Native Docker Image and Push
     runs-on: ubuntu-latest
