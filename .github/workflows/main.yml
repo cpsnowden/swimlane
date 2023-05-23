@@ -28,6 +28,13 @@ jobs:
           name: quarkus-app-jvm
           path: build/quarkus-app
 
+      - name: Upload Docker Files
+        uses: actions/upload-artifact@v1
+        with:
+          name: dockerfiles
+          path: src/main/docker
+
+
   dockerize-jvm:
     runs-on: ubuntu-latest
     name: Build JVM Docker Image
@@ -37,6 +44,12 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: quarkus-app-jvm
+
+    - name: Download Docker Files
+      uses: actions/download-artifact@v3
+      with:
+        name: dockerfiles
+
     - name: Dockerize
       uses: maxday/quarkus-dockerize-action@master
       with:
