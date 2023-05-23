@@ -40,8 +40,8 @@ public class LBRUT implements PoolVenueOperator {
                     OffsetDateTime startTime = session.getStartTimeUTC().atOffset(ZoneOffset.UTC);
                     return new LaneAvailability(
                             startTime.toLocalDate(),
-                            startTime.toLocalDateTime(),
-                            session.getEndTimeUTC().atOffset(ZoneOffset.UTC).toLocalDateTime(),
+                            session.getStartTimeUTC(),
+                            session.getEndTimeUTC(),
                             OPERATOR_NAME,
                             session.getSiteName(),
                             session.getTitle() + " " + session.getResourceName(),

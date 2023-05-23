@@ -10,6 +10,7 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,8 +47,8 @@ public class ActiveLambeth implements PoolVenueOperator {
                 .stream()
                 .map(activity -> new LaneAvailability(
                         activity.getDate(),
-                        activity.getStartsAt(),
-                        activity.getEndsAt(),
+                        activity.getStartsAt().atZone(ZoneId.of("Europe/London")).toInstant(),
+                        activity.getEndsAt().atZone(ZoneId.of("Europe/London")).toInstant(),
                         OPERATOR_NAME,
                         activity.getVenueSlug(),
                         activity.getLocation(),

@@ -1,13 +1,13 @@
 package org.cps.swimlane.model;
 
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class LaneAvailability {
 
     private final LocalDate date;
-    private final LocalDateTime startAtUTC;
-    private final LocalDateTime endAtUTC;
+    private final Instant startAtUTC;
+    private final Instant endAtUTC;
 
     private final String operator;
     private final String venue;
@@ -15,8 +15,8 @@ public class LaneAvailability {
     private final int spaces;
 
     public LaneAvailability(LocalDate date,
-                            LocalDateTime startAtUTC,
-                            LocalDateTime endAtUTC,
+                            Instant startAtUTC,
+                            Instant endAtUTC,
                             String operator,
                             String venue,
                             String laneName,
@@ -34,11 +34,11 @@ public class LaneAvailability {
         return date;
     }
 
-    public LocalDateTime getStartAtUTC() {
+    public Instant getStartAtUTC() {
         return startAtUTC;
     }
 
-    public LocalDateTime getEndAtUTC() {
+    public Instant getEndAtUTC() {
         return endAtUTC;
     }
 
