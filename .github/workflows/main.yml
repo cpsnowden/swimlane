@@ -31,6 +31,7 @@ jobs:
   dockerize-jvm:
     runs-on: ubuntu-latest
     name: Build JVM Docker Image
+    needs: build
     steps:
     - name: Download JVM Build
       uses: actions/download-artifact@v3
@@ -39,7 +40,8 @@ jobs:
     - name: Dockerize
       uses: maxday/quarkus-dockerize-action@master
       with:
-        tag: swimlane
+        tag: gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APP_NAME }}
+#        tag: gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APP_NAME }}
         executablePath: ''
         dockerfilePath: src/main/docker/Dockerfile.jvm
     - name: Listing
