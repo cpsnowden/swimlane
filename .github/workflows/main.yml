@@ -1,6 +1,6 @@
 on:
   push:
-    branches: ["master",d "native"]
+    branches: ["master", "native"]
 
 env:
   PROJECT_ID: wagon-bootcamp-374809
