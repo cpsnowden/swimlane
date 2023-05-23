@@ -94,4 +94,4 @@ jobs:
 
     environment:
         name: production
-        url: ${{ steps.deploy.outputs.url }}
+        url: ${{ steps.deploy.outputs.url }}/q/swagger-ui/
