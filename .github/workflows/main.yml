@@ -15,6 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Application
     steps:
+      - name: Google Auth
+        id: auth
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
       - name: Checkout the code
         uses: actions/checkout@master
 
@@ -29,7 +35,13 @@ jobs:
       - name: Build with Gradle
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
         with:
-          arguments: build -Dquarkus.package.type=native -Dquarkus.container-image.build=true -Dquarkus.container-image.tag="${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}:${{ github.sha }}" -Dquarkus.container-image.push=true -Dquarkus.container-image.registry="${{ env.GAR_LOCATION }}-docker.pkg.dev"
+          arguments: |-
+            build 
+            -Dquarkus.package.type=native 
+            -Dquarkus.container-image.build=true 
+            -Dquarkus.container-image.tag=${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}:${{ github.sha }} 
+            -Dquarkus.container-image.push=true 
+            -Dquarkus.container-image.registry=${{ env.GAR_LOCATION }}-docker.pkg.dev
 
 #      - name: Upload Build Artifact
 #        uses: actions/upload-artifact@v2
