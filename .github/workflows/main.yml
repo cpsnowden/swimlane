@@ -61,7 +61,7 @@ jobs:
       with:
         tag: gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APP_NAME }}
 #        tag: gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APP_NAME }}
-        executablePath: 'placeholder'
+        executablePath: 'dockerfiles/Dockerfile.jvm'
         dockerfilePath: dockerfiles/Dockerfile.jvm
 
         
