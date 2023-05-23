@@ -44,11 +44,13 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: quarkus-app-jvm
+        path: build/quarkus-app
 
     - name: Download Docker Files
       uses: actions/download-artifact@v3
       with:
         name: dockerfiles
+        path: dockerfiles
 
     - name: Listing
       run: |
@@ -60,7 +62,7 @@ jobs:
         tag: gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APP_NAME }}
 #        tag: gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APP_NAME }}
         executablePath: 'placeholder'
-        dockerfilePath: src/main/docker/Dockerfile.jvm
+        dockerfilePath: dockerfiles/Dockerfile.jvm
 
         
 
