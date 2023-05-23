@@ -11,14 +11,21 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
-import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @ApplicationScoped
 public class EveryoneActive implements PoolVenueOperator {
 
     public static final String OPERATOR_NAME = "everyone-active";
+
+    //Expand once know how to correlate venues with swimming activity id
+    private final Map<String, VenueDetails> venuesBySlug = Stream.of(
+            new VenueDetails("Queen Mother Sports Centre", "queen-mother-sports-center").withScope("155POOLPR1")
+    ).collect(Collectors.toMap(VenueDetails::getSlug, Function.identity()));
 
     @ConfigProperty(name = "everyone-active.api-authentication-key")
     String apiAuthenticationKey;
@@ -29,9 +36,11 @@ public class EveryoneActive implements PoolVenueOperator {
     @Override
     public List<LaneAvailability> getAvailability(String venueSlug, LocalDate date) {
 
+        VenueDetails venueDetails = venuesBySlug.get(venueSlug);
+
         long fromUTC = date.atStartOfDay().toEpochSecond(ZoneOffset.UTC);
         long toUTC = date.atTime(23, 59, 59).toEpochSecond(ZoneOffset.UTC);
-        return everyoneActiveApi.sessions(apiAuthenticationKey, venueSlug, fromUTC, toUTC)
+        return everyoneActiveApi.sessions(apiAuthenticationKey, String.join(",", venueDetails.getSessionScope()), fromUTC, toUTC)
                 .getSessions()
                 .stream()
                 .map(session -> {
@@ -50,8 +59,10 @@ public class EveryoneActive implements PoolVenueOperator {
 
     @Override
     public List<Venue> getVenues() {
-        //Expand once know how to correlate venues with swimming activity id
-        return Collections.singletonList(new Venue("Queen Mother Sports Centre", "155POOLPR1", OPERATOR_NAME));
+        return venuesBySlug.values()
+                .stream()
+                .map(venueDetails -> new Venue(venueDetails.getName(), venueDetails.getSlug(), OPERATOR_NAME))
+                .collect(Collectors.toList());
     }
 
     @Override
