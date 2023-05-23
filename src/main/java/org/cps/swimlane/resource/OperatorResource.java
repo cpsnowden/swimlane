@@ -8,6 +8,7 @@ import org.cps.swimlane.model.Venue;
 import org.cps.swimlane.operator.core.PoolVenueOperatorRegistry;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,6 +43,9 @@ public class OperatorResource {
         }
         return poolVenueOperatorRegistry
                 .findWithNameOrThrow(operatorId)
-                .getAvailability(venueId, date);
+                .getAvailability(venueId, date)
+                .stream()
+                .sorted(Comparator.comparing(LaneAvailability::getStartAtUTC))
+                .collect(Collectors.toList());
     }
 }

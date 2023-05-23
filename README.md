@@ -1,6 +1,6 @@
 # Swim Lane
 
-Swim Lane is a side-project aimed at showing lap swimming lane availability accross
+Swim Lane is a side-project aimed at showing lap swimming lane availability across
 different UK swimming pools (operated by different vendors), preventing the need
 to jump across different booking application to see availability and plan your
 week.
