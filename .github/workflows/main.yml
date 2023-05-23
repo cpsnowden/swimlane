@@ -50,6 +50,10 @@ jobs:
       with:
         name: dockerfiles
 
+    - name: Listing
+      run: |
+        ls -ltR
+
     - name: Dockerize
       uses: maxday/quarkus-dockerize-action@master
       with:
@@ -57,6 +61,7 @@ jobs:
 #        tag: gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APP_NAME }}
         executablePath: 'placeholder'
         dockerfilePath: src/main/docker/Dockerfile.jvm
-    - name: Listing
-      run: |
-        ls -ltR
+
+        
+
+#    https://github.com/marketplace/actions/deploy-to-cloud-run
