@@ -40,7 +40,7 @@ jobs:
       uses: maxday/quarkus-dockerize-action@master
       with:
         tag: swimlane
-        executablePath: '''
+        executablePath: ''
         dockerfilePath: src/main/docker/Dockerfile.jvm
     - name: Listing
       run: |
