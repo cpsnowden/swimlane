@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ public class ActivityResponse {
     *    }
      * }
      */
+    @RegisterForReflection
     private static class DataHolder<T> {
 
         @JsonIgnore
