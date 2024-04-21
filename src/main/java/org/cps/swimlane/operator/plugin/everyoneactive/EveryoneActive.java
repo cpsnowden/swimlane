@@ -24,7 +24,10 @@ public class EveryoneActive implements PoolVenueOperator {
 
     //Expand once know how to correlate venues with swimming activity id
     private final Map<String, VenueDetails> venuesBySlug = Stream.of(
-            new VenueDetails("Queen Mother Sports Centre", "queen-mother-sports-center").withScope("155POOLPR1")
+            new VenueDetails("Queen Mother Sports Centre", "queen-mother-sports-center")
+                    .withScope("155POOLPR1"),
+            new VenueDetails("London Aquatics Centre", "london-aquatics-center")
+                    .withScope("330POOLPR1,330POOLPR2,330POOLPR3,330POOLPR4,330POOLPR5,330POOLPR6,330POOLPR7")
     ).collect(Collectors.toMap(VenueDetails::getSlug, Function.identity()));
 
     @ConfigProperty(name = "everyone-active.api-authentication-key")
